@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import ProjectSidebar from "./components/ProjectSidebar.jsx";
-import NewProject from "./components/NewProject.jsx";
+import AddProject from "./components/AddProject.jsx";
 import CreateProject from "./components/CreateProject.jsx";
 
 
@@ -12,11 +12,15 @@ function App() {
     setIsCreateProject(value);
   }
 
+  const handleSubmitNewProject = (formDatas) => {
+    console.log("form datas :", formDatas)
+  }
+
   return (
     <div className='flex'>
       <ProjectSidebar onAddProjectChange={handleAddProjectChange} />
-      {!isCreateProject && <NewProject />}
-      {isCreateProject && <CreateProject />}
+      {!isCreateProject && <AddProject onAddProjectChange={handleAddProjectChange} />}
+      {isCreateProject && <CreateProject onAddProjectChange={handleAddProjectChange} onSubmitProject={handleSubmitNewProject} />}
     </div>
   );
 }
