@@ -26,7 +26,7 @@ export default function ProjectSidebar({ onNavigation, projects }) {
         onClick={handleClickAddProject}
         className="add-btn w-full mt-2"
       >
-        Add new project
+        + Add new project
       </button>
     </div>
   );
