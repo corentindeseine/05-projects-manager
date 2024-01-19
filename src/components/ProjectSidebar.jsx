@@ -1,18 +1,33 @@
-import { useState } from 'react';
+export default function ProjectSidebar({ onNavigation, projects }) {
+  const handleClickAddProject = () => {
+    onNavigation('FormProject');
+  };
 
-export default function ProjectSidebar({onAddProjectChange}) {
-
-  const handleClick = () => {
-    onAddProjectChange(true);
-  }
+  const handleClickProjectDetails = () => {
+    onNavigation('ProjectDetails')
+  };
 
   return (
-    <div className="h-screen w-40 sm:w-50 md:w-70 lg:w-1/4 xl:w-1/3 bg-slate-900 text-white rounded-tr-xl pl-12 mt-12">
-      <h1 className="my-8 text-3xl font-bold pt-12">My Projects</h1>
-      <button onClick={handleClick} className='add-btn'> + ADD PROJECT </button>
+    <div className="h-screen w-1/4 bg-slate-900 text-white rounded-tr-xl pl-6 mt-12 pr-4">
+      <h1 className="my-6 text-3xl font-bold pt-12">My Projects</h1>
       <ul>
-        "List"
+        {projects.map((project) => (
+          <button
+            className="w-full text-left rounded-md mb-2 px-3 py-1 overflow-hidden hover:bg-slate-700"
+            key={project.title}
+            onClick={handleClickProjectDetails}
+          >
+            {project.title}
+          </button>
+        ))}
       </ul>
+
+      <button
+        onClick={handleClickAddProject}
+        className="add-btn w-full mt-2"
+      >
+        Add new project
+      </button>
     </div>
-  )
+  );
 }
